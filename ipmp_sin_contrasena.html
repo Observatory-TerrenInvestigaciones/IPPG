@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPPG — Investigación y Protección para la Paz Global</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1420; --bg2:#161E2C; --bg3:#1D273A;
+  --line: rgba(237,239,242,0.10);
+  --steel:#5E8FC4; --steel-dim:#3B6EA5;
+  --crimson:#A8434F; --crimson-dim:#8B2E3B;
+  --brass:#B08D57;
+  --off:#EDEFF2; --slate:#8A97AC;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{ scroll-behavior:smooth; }
+body{ background:var(--bg); color:var(--off); font-family:'Source Serif 4',serif; line-height:1.6; }
+.display{ font-family:'Barlow Semi Condensed',sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:0.03em; }
+.mono{ font-family:'IBM Plex Mono',monospace; }
+
+/* ===== HEADER ===== */
+header{ position:sticky; top:0; z-index:60; background:rgba(14,20,32,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+.header-inner{ max-width:1200px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand{ display:flex; align-items:center; gap:12px; cursor:pointer; }
+.seal{ width:38px; height:38px; flex-shrink:0; }
+.brand-text .display{ font-size:15px; line-height:1.05; color:var(--off); letter-spacing:0.02em; }
+.brand-text .mono{ font-size:8.5px; color:var(--brass); letter-spacing:0.15em; margin-top:2px; }
+nav{ display:flex; gap:18px; flex-wrap:wrap; }
+nav button{ background:none; border:none; color:var(--off); opacity:0.7; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; cursor:pointer; padding:6px 0; }
+nav button:hover{ opacity:1; }
+nav button.active{ opacity:1; color:var(--brass); }
+@media (max-width:900px){ nav{ display:none; } }
+
+/* ===== HERO ===== */
+.hero{ max-width:1200px; margin:0 auto; padding:56px 24px 30px; position:relative; }
+.hero .seal-bg{ position:absolute; right:0; top:-20px; width:340px; height:340px; opacity:0.05; }
+.eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.18em; color:var(--brass); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.eyebrow::before{ content:''; width:22px; height:1px; background:var(--brass); }
+.hero h1{ font-size:clamp(30px,5vw,54px); line-height:1.05; max-width:16ch; position:relative; z-index:1; }
+.hero p.lede{ margin-top:18px; font-size:16px; max-width:60ch; color:var(--slate); position:relative; z-index:1; }
+
+/* ticker */
+.ticker-bar{ margin-top:36px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; position:relative; background:var(--bg2); }
+.ticker-label{ position:absolute; left:0; top:0; bottom:0; background:var(--crimson-dim); color:var(--off); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; display:flex; align-items:center; padding:0 14px; z-index:2; white-space:nowrap; }
+.ticker-track{ display:flex; white-space:nowrap; animation:scrollTicker 32s linear infinite; padding-left:170px; }
+.ticker-track span{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--off); padding:12px 40px 12px 0; }
+.ticker-track span b{ color:var(--brass); }
+@keyframes scrollTicker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ===== SECTION SHELL ===== */
+section.block{ max-width:1200px; margin:0 auto; padding:56px 24px; border-top:1px solid var(--line); }
+.block-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; gap:16px; flex-wrap:wrap; }
+.block-head h2{ font-size:clamp(24px,3.4vw,34px); }
+.block-head p{ color:var(--slate); font-size:13.5px; max-width:52ch; margin-top:6px; }
+.block-head .num{ font-family:'IBM Plex Mono',monospace; color:var(--slate); font-size:11px; }
+
+/* ===== HISTORICO TIMELINE ===== */
+.timeline{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--brass); margin-left:8px; }
+.tl-item{ padding:14px 0 14px 24px; position:relative; }
+.tl-item::before{ content:''; position:absolute; left:-7px; top:20px; width:11px; height:11px; border-radius:50%; background:var(--brass); border:2px solid var(--bg); }
+.tl-item .date{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--brass); letter-spacing:0.05em; }
+.tl-item .title{ font-size:16px; margin-top:2px; }
+
+/* ===== TABS (regiones) ===== */
+.tabs{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:28px; }
+.tab{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.05em; padding:9px 16px; border:1px solid var(--line); background:var(--bg2); color:var(--slate); cursor:pointer; text-transform:uppercase; }
+.tab.active{ border-color:var(--steel); color:var(--steel); background:var(--bg3); }
+
+/* ===== DISPATCH CARDS ===== */
+.dispatch-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); }
+@media (max-width:800px){ .dispatch-grid{ grid-template-columns:1fr; } }
+.card{ background:var(--bg); padding:26px; position:relative; cursor:pointer; transition:background .2s; }
+.card:hover{ background:var(--bg2); }
+.card img.thumb{ width:100%; height:140px; object-fit:cover; margin-bottom:14px; filter:grayscale(0.15); }
+.status-chip{ position:absolute; top:24px; right:24px; border:1px solid var(--steel-dim); color:var(--steel); font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.08em; padding:3px 8px; }
+.status-chip.archivado{ border-color:var(--slate); color:var(--slate); }
+.status-chip.vigente{ border-color:var(--crimson); color:var(--crimson); }
+.card .tag{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--slate); letter-spacing:0.08em; margin-bottom:10px; }
+.card h3{ font-size:20px; max-width:26ch; margin-bottom:10px; line-height:1.2; font-weight:600; }
+.card p{ color:var(--slate); font-size:14px; max-width:48ch; }
+.card .read{ margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--steel); letter-spacing:0.06em; }
+.empty-note{ padding:30px; color:var(--slate); font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--bg2); grid-column:1/-1; }
+
+/* modal (article) */
+.modal-backdrop{ position:fixed; inset:0; background:rgba(6,9,14,0.85); z-index:100; display:flex; align-items:flex-start; justify-content:center; padding:30px 16px; overflow-y:auto; }
+.modal{ background:var(--bg2); border:1px solid var(--line); color:var(--off); max-width:720px; width:100%; padding:40px; position:relative; margin-bottom:40px; }
+.modal .close{ position:absolute; top:16px; right:20px; background:none; border:none; font-size:20px; cursor:pointer; color:var(--off); }
+.modal img{ width:100%; max-height:340px; object-fit:cover; margin-bottom:20px; }
+.modal .tag{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--brass); letter-spacing:0.08em; margin-bottom:12px; }
+.modal h2{ font-size:28px; margin-bottom:16px; line-height:1.15; }
+.modal p{ margin-bottom:14px; font-size:15.5px; color:var(--off); }
+.modal .video-embed{ position:relative; padding-bottom:56.25%; height:0; margin:20px 0; }
+.modal .video-embed iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+
+/* ===== PARTNERS TICKER ===== */
+.partners-note{ color:var(--slate); font-size:13.5px; max-width:60ch; margin-bottom:24px; }
+.partners-track{ display:flex; gap:0; overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.partners-scroll{ display:flex; animation:scrollTicker 26s linear infinite; }
+.partners-scroll span{ font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:15px; letter-spacing:0.04em; color:var(--slate); padding:18px 34px; white-space:nowrap; text-transform:uppercase; border-right:1px solid var(--line); }
+
+/* ===== NETWORK / JOIN ===== */
+.network-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:44px; }
+@media (max-width:900px){ .network-grid{ grid-template-columns:1fr; } }
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--slate); margin-bottom:6px; text-transform:uppercase; }
+.field input, .field select, .field textarea{ width:100%; background:var(--bg3); border:1px solid var(--line); color:var(--off); padding:10px 12px; font-family:'Source Serif 4',serif; font-size:14.5px; }
+.field textarea{ resize:vertical; min-height:64px; }
+.field input:focus, .field select:focus, .field textarea:focus{ outline:2px solid var(--steel); border-color:var(--steel); }
+.note{ font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--slate); margin-top:14px; line-height:1.6; }
+.btn{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11.5px; letter-spacing:0.06em; padding:13px 22px; border:1px solid var(--off); background:none; color:var(--off); cursor:pointer; text-transform:uppercase; }
+.btn:hover{ background:var(--off); color:var(--bg); }
+.btn.primary{ background:var(--steel-dim); border-color:var(--steel-dim); color:#0a1420; }
+.btn.primary:hover{ background:var(--steel); border-color:var(--steel); }
+
+.directory-list{ display:flex; flex-direction:column; gap:1px; background:var(--line); max-height:460px; overflow-y:auto; }
+.directory-item{ background:var(--bg); padding:16px 18px; }
+.directory-item .name{ font-weight:600; font-size:15px; }
+.directory-item .meta{ font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--steel); letter-spacing:0.05em; margin:5px 0; }
+.directory-item .msg{ font-size:13.5px; color:var(--slate); }
+.directory-empty{ padding:26px 18px; color:var(--slate); font-family:'IBM Plex Mono',monospace; font-size:11px; background:var(--bg); }
+
+footer{ border-top:1px solid var(--line); padding:34px 24px; }
+footer .inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+footer .mono{ font-size:10.5px; color:var(--slate); }
+
+/* ===== PUBLISH FAB + MODAL ===== */
+.fab{ position:fixed; bottom:22px; right:22px; width:56px; height:56px; border-radius:50%; background:var(--brass); color:var(--bg); border:none; font-size:26px; cursor:pointer; z-index:80; box-shadow:0 4px 14px rgba(0,0,0,0.4); }
+.publish-modal .modal{ max-width:600px; }
+.publish-modal h2{ font-family:'Barlow Semi Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.03em; }
+.file-preview{ width:100%; max-height:160px; object-fit:cover; margin-top:8px; display:none; }
+.size-warn{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--crimson); margin-top:6px; display:none; }
+
+.toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--brass); color:var(--bg); padding:12px 22px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.04em; z-index:200; opacity:0; transition:opacity .3s; pointer-events:none; }
+.toast.show{ opacity:1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand" onclick="scrollToId('top')">
+      <svg class="seal" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#B08D57" stroke-width="2"/>
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#B08D57" stroke-width="1"/>
+        <g stroke="#B08D57" stroke-width="1.3" fill="none" stroke-linecap="round">
+          <path d="M50,62 C58,58 66,50 72,38"/>
+          <path d="M50,64 C60,61 70,55 78,45"/>
+          <path d="M50,66 C61,65 73,61 82,53"/>
+          <path d="M50,68 C60,68 70,66 80,61"/>
+          <path d="M50,62 C42,58 34,50 28,38"/>
+          <path d="M50,64 C40,61 30,55 22,45"/>
+          <path d="M50,66 C39,65 27,61 18,53"/>
+          <path d="M50,68 C40,68 30,66 20,61"/>
+        </g>
+        <g fill="#B08D57">
+          <rect x="47" y="48" width="6" height="30" rx="3"/>
+          <path d="M47,58 C40,58 36,54 36,48 C36,45 38,43 40,43 C40,50 43,54 47,56 Z"/>
+          <path d="M53,58 C60,58 64,54 64,48 C64,45 62,43 60,43 C60,50 57,54 53,56 Z"/>
+        </g>
+      </svg>
+      <div class="brand-text">
+        <div class="display">IPPG</div>
+        <div class="mono">INVESTIGACIÓN Y PROTECCIÓN PARA LA PAZ GLOBAL</div>
+      </div>
+    </div>
+    <nav>
+      <button onclick="scrollToId('vigentes')">Vigentes</button>
+      <button onclick="scrollToId('historico')">Archivo</button>
+      <button onclick="scrollToId('regiones')">Regiones</button>
+      <button onclick="scrollToId('tecnologia')">Tecnología</button>
+      <button onclick="scrollToId('red')">Red</button>
+      <button onclick="scrollToId('contacto')">Contacto</button>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+<section class="hero">
+  <svg class="seal-bg" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#B08D57" stroke-width="1"/>
+    <g stroke="#B08D57" stroke-width="1" fill="none" stroke-linecap="round">
+      <path d="M50,62 C58,58 66,50 72,38"/>
+      <path d="M50,64 C60,61 70,55 78,45"/>
+      <path d="M50,66 C61,65 73,61 82,53"/>
+      <path d="M50,68 C60,68 70,66 80,61"/>
+      <path d="M50,62 C42,58 34,50 28,38"/>
+      <path d="M50,64 C40,61 30,55 22,45"/>
+      <path d="M50,66 C39,65 27,61 18,53"/>
+      <path d="M50,68 C40,68 30,66 20,61"/>
+    </g>
+    <g fill="#B08D57">
+      <rect x="47" y="48" width="6" height="30" rx="3"/>
+      <path d="M47,58 C40,58 36,54 36,48 C36,45 38,43 40,43 C40,50 43,54 47,56 Z"/>
+      <path d="M53,58 C60,58 64,54 64,48 C64,45 62,43 60,43 C60,50 57,54 53,56 Z"/>
+    </g>
+  </svg>
+  <div class="eyebrow">OBSERVATORIO INDEPENDIENTE · METODOLOGÍA VERIFICABLE</div>
+  <h1 class="display">Investigación aplicada a la paz y la seguridad global.</h1>
+  <p class="lede">Documentamos conflictos armados, terrorismo, desastres y crisis humanitarias con estándares de verificación, y conectamos investigadores con organizaciones que necesitan ese trabajo.</p>
+
+  <div class="ticker-bar">
+    <div class="ticker-label">VIGENTE</div>
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</section>
+
+<section class="block" id="vigentes">
+  <div class="block-head">
+    <div><div class="eyebrow">CATÁLOGO</div><h2 class="display">Conflictos vigentes</h2><p>Casos activos en seguimiento por este observatorio.</p></div>
+    <div class="num mono" id="vigentesCount">0 CASOS</div>
+  </div>
+  <div class="dispatch-grid" id="vigentesGrid"></div>
+</section>
+
+<section class="block" id="historico">
+  <div class="block-head">
+    <div><div class="eyebrow">MEMORIA</div><h2 class="display">Archivo histórico mundial</h2><p>Guerras, atentados, desastres y genocidios de referencia — línea de tiempo base, ampliable con investigación propia.</p></div>
+  </div>
+  <div class="timeline" id="staticTimeline"></div>
+  <div class="dispatch-grid" id="historicoGrid" style="margin-top:24px;"></div>
+</section>
+
+<section class="block" id="regiones">
+  <div class="block-head">
+    <div><div class="eyebrow">TERRENO</div><h2 class="display">Investigaciones por región</h2><p>Análisis y discursos geopolíticos organizados por zona.</p></div>
+  </div>
+  <div class="tabs" id="regionTabs"></div>
+  <div class="dispatch-grid" id="regionGrid"></div>
+</section>
+
+<section class="block" id="tecnologia">
+  <div class="block-head">
+    <div><div class="eyebrow">PREVENCIÓN</div><h2 class="display">Tecnología aplicada</h2><p>Herramientas y métodos propios para investigación y prevención de crisis.</p></div>
+  </div>
+  <div class="dispatch-grid" id="tecGrid"></div>
+</section>
+
+<section class="block" id="red">
+  <div class="block-head">
+    <div><div class="eyebrow">COLABORACIÓN</div><h2 class="display">Red y solicitudes de trabajo</h2></div>
+  </div>
+  <div class="network-grid">
+    <div>
+      <p style="color:var(--slate); margin-bottom:20px; font-size:14.5px;">Regístrate para aparecer en el directorio público, o deja una solicitud de colaboración, informe o reporte.</p>
+      <form id="networkForm">
+        <div class="field"><label>Nombre / Organización</label><input type="text" id="f-name" required></div>
+        <div class="field"><label>Tipo de solicitud</label>
+          <select id="f-type">
+            <option>Ofrecer colaboración de investigación</option>
+            <option>Solicitar informe o reporte</option>
+            <option>Buscar trabajo / consultoría</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field"><label>Área de especialización</label>
+          <select id="f-area">
+            <option>Derecho Internacional Humanitario</option>
+            <option>Análisis geoespacial / OSINT</option>
+            <option>Periodismo de investigación</option>
+            <option>Antropología / trabajo de campo</option>
+            <option>Ciencia política y seguridad</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field"><label>Región de interés</label><input type="text" id="f-region" placeholder="Ej. Medio Oriente, Asia..."></div>
+        <div class="field"><label>Contacto</label><input type="text" id="f-contact" required></div>
+        <div class="field"><label>Mensaje</label><textarea id="f-msg"></textarea></div>
+        <button type="submit" class="btn primary" style="width:100%;">Publicar en el directorio</button>
+        <p class="note">Esta información será visible públicamente. No incluyas datos que no quieras compartir.</p>
+      </form>
+    </div>
+    <div>
+      <div class="num mono" style="margin-bottom:10px;" id="dirCount">CARGANDO DIRECTORIO...</div>
+      <div class="directory-list" id="directoryList"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="organismos">
+  <div class="block-head">
+    <div><div class="eyebrow">PÚBLICO OBJETIVO</div><h2 class="display">Organismos con los que buscamos conectar</h2></div>
+  </div>
+  <p class="partners-note">Este observatorio no está afiliado ni asociado formalmente a los organismos listados — se muestran como referencia del tipo de institución a la que este trabajo puede interesar.</p>
+  <div class="partners-track">
+    <div class="partners-scroll" id="partnersScroll"></div>
+  </div>
+  <div style="margin-top:28px; padding:24px; border:1px solid var(--line); background:var(--bg2); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+    <p style="margin:0; font-size:14.5px; color:var(--off); max-width:52ch;">¿Representas una agencia, organismo oficial o medio y quieres contactarnos por un informe, reporte o colaboración?</p>
+    <button class="btn primary" onclick="scrollToId('red')">Contactar ahora</button>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="inner">
+    <span class="mono">IPPG © 2026 — OBSERVATORIO INDEPENDIENTE</span>
+    <span class="mono">CONTACTO: contacto@ippg.example</span>
+  </div>
+</footer>
+
+<button class="fab" onclick="openPublish()" title="Publicar investigación">＋</button>
+
+<div class="modal-backdrop" id="modalBackdrop" style="display:none;">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="modal-backdrop publish-modal" id="publishBackdrop" style="display:none;">
+  <div class="modal" id="publishModalContent"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PUBLISH_PASSCODE = ""; // cámbiala pidiéndomelo, o edita esta línea
+const REGIONS = ['Medio Oriente','Asia','América','Oceanía','Geopolítica'];
+const ALL_CATEGORIES = [...REGIONS, 'Tecnología Aplicada','Histórico','Vigente'];
+
+function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function escapeHtml(str){ const d=document.createElement('div'); d.textContent = str||''; return d.innerHTML; }
+
+/* ===== Static historical timeline (well-known reference facts) ===== */
+const STATIC_TIMELINE = [
+  {date:'1914–1918', title:'Primera Guerra Mundial'},
+  {date:'1939–1945', title:'Segunda Guerra Mundial'},
+  {date:'1992–1995', title:'Guerra de Bosnia'},
+  {date:'1994', title:'Genocidio de Ruanda'},
+  {date:'2001', title:'Atentados del 11 de septiembre'},
+  {date:'2004', title:'Tsunami del Océano Índico'},
+];
+document.getElementById('staticTimeline').innerHTML = STATIC_TIMELINE.map(t=>`
+  <div class="tl-item"><div class="date mono">${t.date}</div><div class="title">${t.title}</div></div>
+`).join('');
+
+/* ===== Partners ticker (target orgs, not asserted partners) ===== */
+const PARTNER_TYPES = ['ONGs humanitarias','Organismos multilaterales (ONU, UE)','Agencias de inteligencia y seguridad','Medios de investigación','Centros académicos','Cooperación internacional'];
+const scroll = document.getElementById('partnersScroll');
+scroll.innerHTML = [...PARTNER_TYPES, ...PARTNER_TYPES].map(p=>`<span>${p}</span>`).join('');
+
+/* ===== Region tabs ===== */
+let activeRegion = REGIONS[0];
+const tabsEl = document.getElementById('regionTabs');
+function renderTabs(){
+  tabsEl.innerHTML = REGIONS.map(r=>`<div class="tab ${r===activeRegion?'active':''}" data-r="${r}">${r}</div>`).join('');
+  tabsEl.querySelectorAll('.tab').forEach(el=>{
+    el.onclick = ()=>{ activeRegion = el.dataset.r; renderTabs(); renderRegionGrid(); };
+  });
+}
+renderTabs();
+
+/* ===== Storage-backed dispatches ===== */
+let dispatches = [];
+
+async function loadDispatches(){
+  try{
+    const res = await window.storage.list('dispatch:', true);
+    const keys = (res && res.keys) ? res.keys : [];
+    const entries = [];
+    for(const k of keys){
+      try{
+        const r = await window.storage.get(k, true);
+        if(r && r.value) entries.push(JSON.parse(r.value));
+      }catch(e){}
+    }
+    entries.sort((a,b)=>(b.ts||0)-(a.ts||0));
+    dispatches = entries;
+  }catch(e){
+    console.error('Error cargando dispatches', e);
+    dispatches = [];
+  }
+  renderAll();
+}
+
+function cardHtml(d, idx){
+  const statusClass = d.status==='Vigente' ? 'vigente' : (d.status==='Archivado' ? 'archivado' : '');
+  return `
+    <div class="card" onclick="openArticle('${d.uid}')">
+      ${d.status ? `<div class="status-chip ${statusClass}">${escapeHtml(d.status)}</div>`:''}
+      ${d.photo ? `<img class="thumb" src="${d.photo}">` : ''}
+      <div class="tag">${escapeHtml(d.category||'')} · ${new Date(d.ts).toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'})}</div>
+      <h3>${escapeHtml(d.title)}</h3>
+      <p>${escapeHtml((d.body||'').slice(0,110))}${d.body && d.body.length>110 ? '…':''}</p>
+      <div class="read">LEER INVESTIGACIÓN →</div>
+    </div>`;
+}
+
+function renderAll(){
+  // vigentes
+  const vig = dispatches.filter(d=>d.category==='Vigente');
+  document.getElementById('vigentesCount').textContent = vig.length + ' CASOS';
+  document.getElementById('vigentesGrid').innerHTML = vig.length ? vig.map(cardHtml).join('') : `<div class="empty-note">Aún no hay casos publicados. Usa el botón + para agregar el primero.</div>`;
+
+  // ticker
+  const track = document.getElementById('tickerTrack');
+  const tickerItems = vig.length ? vig.map(d=>`<span><b>${escapeHtml(d.region_label||d.category)}</b> — ${escapeHtml(d.title)}</span>`) : ['<span>Aún no hay conflictos vigentes publicados — usa el botón + para agregar el primero.</span>'];
+  track.innerHTML = (tickerItems.concat(tickerItems)).join('');
+
+  // historico
+  const hist = dispatches.filter(d=>d.category==='Histórico');
+  document.getElementById('historicoGrid').innerHTML = hist.length ? hist.map(cardHtml).join('') : '';
+
+  // tecnologia
+  const tec = dispatches.filter(d=>d.category==='Tecnología Aplicada');
+  document.getElementById('tecGrid').innerHTML = tec.length ? tec.map(cardHtml).join('') : `<div class="empty-note">Todavía no hay publicaciones en esta categoría.</div>`;
+
+  renderRegionGrid();
+}
+
+function renderRegionGrid(){
+  const items = dispatches.filter(d=>d.category===activeRegion);
+  document.getElementById('regionGrid').innerHTML = items.length ? items.map(cardHtml).join('') : `<div class="empty-note">Sin publicaciones aún en ${escapeHtml(activeRegion)}.</div>`;
+}
+
+function openArticle(uid){
+  const d = dispatches.find(x=>x.uid===uid);
+  if(!d) return;
+  let videoHtml = '';
+  if(d.videoUrl){
+    const id = extractYouTubeId(d.videoUrl);
+    if(id) videoHtml = `<div class="video-embed"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe></div>`;
+  }
+  document.getElementById('modalContent').innerHTML = `
+    <button class="close" onclick="closeModal()">✕</button>
+    ${d.photo ? `<img src="${d.photo}">` : ''}
+    <div class="tag">${escapeHtml(d.category)} · ${new Date(d.ts).toLocaleDateString('es-ES')}</div>
+    <h2>${escapeHtml(d.title)}</h2>
+    ${videoHtml}
+    <p>${escapeHtml(d.body||'').split('\\n').join('</p><p>')}</p>
+  `;
+  document.getElementById('modalBackdrop').style.display = 'flex';
+}
+function closeModal(){ document.getElementById('modalBackdrop').style.display='none'; }
+document.getElementById('modalBackdrop').addEventListener('click', e=>{ if(e.target.id==='modalBackdrop') closeModal(); });
+
+function extractYouTubeId(url){
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{6,})/);
+  return m ? m[1] : null;
+}
+
+/* ===== Publish flow (passcode gated) ===== */
+function openPublish(){
+  document.getElementById('publishModalContent').innerHTML = `
+    <button class="close" onclick="closePublish()">✕</button>
+    <h2 style="font-size:22px; margin-bottom:16px;">Acceso — Publicar investigación</h2>
+    <div class="field"><label>Clave</label><input type="password" id="passInput"></div>
+    <button class="btn primary" style="width:100%;" onclick="checkPass()">Entrar</button>
+    <p class="note">Solo quien tenga la clave puede publicar. Pídesela a Claude si la olvidaste o quieres cambiarla.</p>
+  `;
+  document.getElementById('publishBackdrop').style.display = 'flex';
+}
+function closePublish(){ document.getElementById('publishBackdrop').style.display='none'; }
+document.getElementById('publishBackdrop').addEventListener('click', e=>{ if(e.target.id==='publishBackdrop') closePublish(); });
+
+function checkPass(){
+  renderPublishForm();
+}
+
+function renderPublishForm(){
+  document.getElementById('publishModalContent').innerHTML = `
+    <button class="close" onclick="closePublish()">✕</button>
+    <h2 style="font-size:22px; margin-bottom:16px;">Nueva investigación</h2>
+    <div class="field"><label>Título</label><input type="text" id="p-title"></div>
+    <div class="field"><label>Categoría</label>
+      <select id="p-category">${ALL_CATEGORIES.map(c=>`<option>${c}</option>`).join('')}</select>
+    </div>
+    <div class="field"><label>Estado</label>
+      <select id="p-status"><option>Activo</option><option>Vigente</option><option>En seguimiento</option><option>Archivado</option></select>
+    </div>
+    <div class="field"><label>Texto</label><textarea id="p-body" style="min-height:120px;"></textarea></div>
+    <div class="field"><label>Foto (opcional, se comprime automáticamente)</label>
+      <input type="file" accept="image/*" id="p-photo" onchange="handlePhoto(event)">
+      <img class="file-preview" id="photoPreview">
+      <div class="size-warn" id="sizeWarn">La imagen sigue pesando mucho, prueba con otra más pequeña.</div>
+    </div>
+    <div class="field"><label>Link de video (YouTube, opcional)</label><input type="text" id="p-video" placeholder="https://youtube.com/watch?v=..."></div>
+    <button class="btn primary" style="width:100%; margin-top:8px;" onclick="submitDispatch()">Publicar</button>
+  `;
+}
+
+let photoDataUrl = null;
+function handlePhoto(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){
+      const maxDim = 1280;
+      let w = img.width, h = img.height;
+      if(w > h && w > maxDim){ h = h*(maxDim/w); w = maxDim; }
+      else if(h > maxDim){ w = w*(maxDim/h); h = maxDim; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      let quality = 0.75;
+      let dataUrl = canvas.toDataURL('image/jpeg', quality);
+      while(dataUrl.length > 4.3 * 1024 * 1024 && quality > 0.3){
+        quality -= 0.1;
+        dataUrl = canvas.toDataURL('image/jpeg', quality);
+      }
+      const warn = document.getElementById('sizeWarn');
+      if(dataUrl.length > 4.3 * 1024 * 1024){
+        warn.style.display = 'block';
+        photoDataUrl = null;
+      } else {
+        warn.style.display = 'none';
+        photoDataUrl = dataUrl;
+        const prev = document.getElementById('photoPreview');
+        prev.src = dataUrl; prev.style.display = 'block';
+      }
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function submitDispatch(){
+  const title = document.getElementById('p-title').value.trim();
+  const category = document.getElementById('p-category').value;
+  const status = document.getElementById('p-status').value;
+  const body = document.getElementById('p-body').value.trim();
+  const videoUrl = document.getElementById('p-video').value.trim();
+  if(!title || !body){ showToast('Completa al menos título y texto.'); return; }
+
+  const entry = {
+    uid: 'd' + Date.now() + Math.random().toString(36).slice(2,6),
+    title, category, status, body, videoUrl,
+    photo: photoDataUrl || null,
+    ts: Date.now()
+  };
+  const key = 'dispatch:' + entry.uid;
+  try{
+    const result = await window.storage.set(key, JSON.stringify(entry), true);
+    if(!result){ showToast('No se pudo guardar. Intenta de nuevo.'); return; }
+    showToast('Investigación publicada.');
+    photoDataUrl = null;
+    closePublish();
+    loadDispatches();
+  }catch(err){
+    console.error(err);
+    showToast('Error al guardar — la imagen puede ser muy pesada.');
+  }
+}
+
+/* ===== Network directory ===== */
+async function loadDirectory(){
+  const listEl = document.getElementById('directoryList');
+  const countEl = document.getElementById('dirCount');
+  try{
+    const res = await window.storage.list('researcher:', true);
+    const keys = (res && res.keys) ? res.keys : [];
+    if(keys.length === 0){
+      listEl.innerHTML = '<div class="directory-empty">Aún no hay registros. Sé el primero.</div>';
+      countEl.textContent = '0 REGISTROS';
+      return;
+    }
+    const entries = [];
+    for(const k of keys){
+      try{ const r = await window.storage.get(k, true); if(r && r.value) entries.push(JSON.parse(r.value)); }catch(e){}
+    }
+    entries.sort((a,b)=>(b.ts||0)-(a.ts||0));
+    countEl.textContent = entries.length + ' REGISTROS';
+    listEl.innerHTML = entries.map(e=>`
+      <div class="directory-item">
+        <div class="name">${escapeHtml(e.name)}</div>
+        <div class="meta">${escapeHtml(e.type||'')} · ${escapeHtml(e.area)}${e.region?' · '+escapeHtml(e.region):''} · ${escapeHtml(e.contact)}</div>
+        ${e.msg ? `<div class="msg">${escapeHtml(e.msg)}</div>`:''}
+      </div>`).join('');
+  }catch(err){
+    console.error(err);
+    listEl.innerHTML = '<div class="directory-empty">No se pudo cargar. Recarga la página.</div>';
+    countEl.textContent = 'ERROR';
+  }
+}
+
+document.getElementById('networkForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById('f-name').value.trim();
+  const type = document.getElementById('f-type').value;
+  const area = document.getElementById('f-area').value;
+  const region = document.getElementById('f-region').value.trim();
+  const contact = document.getElementById('f-contact').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+  if(!name || !contact){ showToast('Completa nombre y contacto.'); return; }
+  const entry = { name, type, area, region, contact, msg, ts: Date.now() };
+  const key = 'researcher:' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+  try{
+    const result = await window.storage.set(key, JSON.stringify(entry), true);
+    if(!result){ showToast('No se pudo guardar.'); return; }
+    showToast('Publicado en el directorio.');
+    e.target.reset();
+    loadDirectory();
+  }catch(err){ console.error(err); showToast('Error al guardar.'); }
+});
+
+loadDispatches();
+loadDirectory();
+</script>
+
+</body>
+</html>
